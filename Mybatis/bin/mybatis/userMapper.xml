@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userMapper">
+
+	<resultMap type="mybatis.User" id="userMap">
+	<!-- 数据库表里的主键一定要用id标签 -->
+		<id property="uid" column="id"/>
+		<result property="uname" column="name"/>
+		<result property="upass" column="pass"/>
+	</resultMap>
+	
+	<select id="selectUser" resultMap="userMap">
+		select * from user
+	</select>
+	
+	<!-- <select id="selectUser" resultType="mybatis.User">
+		select * from user 
+	</select> -->
+<!-- 	
+	 <select id="selectUserById" parameterType="string" resultType="mybatis.User">
+		select *from user where id=#{fdfsfdc}
+	</select>	 -->
+	
+<!-- 	<select id="selectUserByUp" resultType="mybatis.User">
+		select *from user where name=#{name} and pass=#{pass}
+	</select> -->
+	<insert id="insertUser" parameterType="mybatis.User" >
+		insert into user values(#{id},#{name},#{pass})
+	</insert>
+	
+	<update id="updateUser" parameterType="mybatis.User">
+		update user set name=#{name},pass=#{pass} where id=#{id}
+	</update>
+	
+	<delete id="deleteUser" parameterType="mybatis.User">
+		delete from user where id=#{id}
+	</delete>
+</mapper>
